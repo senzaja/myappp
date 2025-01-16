@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'app/routes/app_pages.dart';
+import 'package:flutter/gestures.dart';
 
 void main() async {
-  // Tambahkan 'async' pada fungsi main
-  WidgetsFlutterBinding.ensureInitialized(); // Pastikan Flutter binding telah diinisialisasi
-  await GetStorage.init(); // Inisialisasi GetStorage
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Application",
+      title: "My Event",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      scrollBehavior: MaterialScrollBehavior().copyWith(
+        dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown},
+      ),
     ),
   );
 }
